@@ -1,16 +1,45 @@
 const express = require("express")
 const dotenv = require("dotenv")
 dotenv.config()
+
+if (!process.env.JWT_SECRET || !process.env.JWT_SECRET.trim()) {
+    throw new Error("JWT_SECRET must be configured before starting the server")
+}
+
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const PORT = process.env.PORT
 const app = express()
+const allowedOrigins = new Set([
+    "https://future-you-web-app.netlify.app",
+    ...(process.env.FRONTEND_URL || "")
+        .split(",")
+        .map(origin => origin.trim())
+        .filter(Boolean)
+])
+
+if (process.env.NODE_ENV === "development") {
+    allowedOrigins.add("http://localhost:5173")
+}
+
+const isAllowedOrigin = origin => !origin || allowedOrigins.has(origin)
+
 app.use(cors({
-    origin: true,
+    origin: (origin, callback) => callback(null, isAllowedOrigin(origin)),
     credentials: true
 }))
+app.use((req, res, next) => {
+    const isStateChangingMethod = ["POST", "PUT", "PATCH", "DELETE"].includes(req.method)
+    const origin = req.get("Origin")
+
+    if (isStateChangingMethod && origin && !isAllowedOrigin(origin)) {
+        return res.status(403).json({ message: "Request origin is not allowed" })
+    }
+
+    next()
+})
 
 const MONGODB_URL = process.env.MONGODB_URL
 

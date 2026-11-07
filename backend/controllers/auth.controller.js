@@ -8,6 +8,13 @@ const Journal = require("../models/journal.model")
 const FutureStory = require("../models/futureStory.model")
 const DailyMotivation = require("../models/dailyMotivation.model")
 
+const getAuthCookieOptions = () => ({
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: process.env.NODE_ENV === "development" ? "lax" : "none",
+    path: "/"
+})
+
 const register = async (req, res) => {
     try {
         const { username, email, password } = req.body
@@ -44,10 +51,8 @@ const register = async (req, res) => {
         )
 
         res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: "strict",
-            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days
+            ...getAuthCookieOptions(),
+            maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
         res.status(201).json({
@@ -99,10 +104,8 @@ const login = async (req, res) => {
         )
 
         res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: "strict",
-            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days
+            ...getAuthCookieOptions(),
+            maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
         res.status(200).json({
@@ -123,12 +126,7 @@ const login = async (req, res) => {
 
 
 const logout = (req, res) => {
-    res.clearCookie("token", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== "development",
-        sameSite: "strict",
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days
-    })
+    res.clearCookie("token", getAuthCookieOptions())
 
     res.status(200).json({
         message: "Logged out successfully"
@@ -226,9 +224,7 @@ const deleteAccount = async (req, res) => {
         await user.deleteOne()
 
         res.clearCookie("token", {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: "strict"
+            ...getAuthCookieOptions()
         })
 
         return res.status(200).json({ message: "Account and associated data deleted" })

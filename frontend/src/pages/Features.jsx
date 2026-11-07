@@ -28,34 +28,34 @@ function Features() {
     return (
         <section
             id="features"
-            className="min-h-screen w-full relative bg-cover bg-center bg-no-repeat text-white flex items-center px-8 md:px-20 py-24 scroll-mt-24"
+            className="relative flex min-h-[100svh] w-full scroll-mt-20 items-center bg-cover bg-center bg-no-repeat px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20"
             style={{ backgroundImage: `url(${FeaturesBG})` }}
         >
             <div className="absolute inset-0 bg-black/70"></div>
 
             <div className="relative z-10 max-w-7xl mx-auto w-full">
 
-                <p className="text-gray-400 tracking-[5px] text-sm mb-5">
+                <p className="mb-4 text-xs tracking-[0.2em] text-gray-400 sm:mb-5 sm:text-sm sm:tracking-[5px]">
                     03 — WHAT WE OFFER
                 </p>
 
-                <h1 className="text-4xl md:text-6xl font-black mb-6">
+                <h1 className="mb-5 text-3xl font-black leading-tight min-[420px]:text-4xl sm:mb-6 md:text-6xl">
                     UNLOCK YOUR POTENTIAL.
                 </h1>
 
-                <p className="text-gray-300 text-lg max-w-2xl mb-14">
+                <p className="mb-9 max-w-2xl text-base text-gray-300 sm:mb-14 sm:text-lg">
                     Everything you need to turn your ambitions into actions,
                     build discipline and create a better future.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
+                <div className="grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
 
                     {features.map((feature) => (
                         <div
                             key={feature.number}
-                            className="bg-black/60 backdrop-blur-sm border border-white/20 rounded-xl p-8 hover:border-white transition duration-300 min-h-[190px]"
+                            className="min-h-[170px] rounded-xl border border-white/20 bg-black/60 p-5 backdrop-blur-sm transition duration-300 hover:border-white sm:min-h-[190px] sm:p-8"
                         >
-                            <p className="text-gray-500 text-sm mb-6">
+                            <p className="mb-4 text-sm text-gray-500 sm:mb-6">
                                 {feature.number}
                             </p>
 
@@ -71,7 +71,7 @@ function Features() {
 
                 </div>
 
-                <h2 className="text-2xl md:text-4xl font-black mt-16">
+                <h2 className="mt-12 text-2xl font-black leading-tight sm:mt-16 md:text-4xl">
                     YOUR FUTURE STARTS WITH YOU.
                 </h2>
 

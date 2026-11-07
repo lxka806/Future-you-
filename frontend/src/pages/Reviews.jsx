@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const reviewsApi = import.meta.env.VITE_REVIEW_API_URL || "/api/reviews"
+const reviewsApi = import.meta.env.VITE_REVIEW_API_URL || "https://future-you-1.onrender.com/api/reviews"
 
 const readApiResponse = async response => {
     const body = await response.text()
@@ -80,16 +80,16 @@ function Reviews() {
     }
 
     return (
-        <section id="reviews" className="scroll-mt-24 bg-black px-6 py-24 text-white sm:px-10 md:py-28 lg:px-20">
-            <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <section id="reviews" className="scroll-mt-20 bg-black px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-28">
+            <div className="mx-auto grid max-w-7xl gap-9 sm:gap-12 lg:grid-cols-[0.8fr_1.2fr]">
                 <div>
-                    <p className="mb-5 text-sm tracking-[5px] text-gray-500">06 — COMMUNITY</p>
-                    <h2 className="mb-5 text-4xl font-black leading-tight sm:text-5xl">
+                    <p className="mb-4 text-xs tracking-[0.2em] text-gray-500 sm:mb-5 sm:text-sm sm:tracking-[5px]">06 — COMMUNITY</p>
+                    <h2 className="mb-5 text-3xl font-black leading-tight min-[420px]:text-4xl sm:text-5xl">
                         SHARE YOUR
                         <br />
                         EXPERIENCE.
                     </h2>
-                    <p className="max-w-md leading-relaxed text-gray-400">
+                    <p className="max-w-md text-sm leading-relaxed text-gray-400 sm:text-base">
                         Have you started building your future with us? Leave a review and help others take their first step.
                     </p>
 
@@ -110,7 +110,7 @@ function Reviews() {
 
                         <fieldset>
                             <legend className="mb-2 text-sm text-gray-300">Your rating</legend>
-                            <div className="flex gap-2" role="radiogroup" aria-label="Rating">
+                            <div className="flex gap-1 sm:gap-2" role="radiogroup" aria-label="Rating">
                                 {[1, 2, 3, 4, 5].map(value => (
                                     <button
                                         key={value}
@@ -119,7 +119,7 @@ function Reviews() {
                                         aria-checked={rating === value}
                                         aria-label={`${value} star${value === 1 ? "" : "s"}`}
                                         onClick={() => setRating(value)}
-                                        className={`text-3xl transition ${value <= rating ? "text-white" : "text-gray-600 hover:text-gray-300"}`}
+                                        className={`text-2xl transition sm:text-3xl ${value <= rating ? "text-white" : "text-gray-600 hover:text-gray-300"}`}
                                     >
                                         ★
                                     </button>
@@ -159,7 +159,7 @@ function Reviews() {
                     <div className="mb-6 flex items-end justify-between border-b border-white/20 pb-4">
                         <div>
                             <p className="mb-2 text-sm tracking-[3px] text-gray-500">REAL STORIES</p>
-                            <h3 className="text-2xl font-bold">Community Reviews</h3>
+                            <h3 className="text-xl font-bold sm:text-2xl">Community Reviews</h3>
                         </div>
                         <span className="text-sm text-gray-500">{reviews.length} review{reviews.length === 1 ? "" : "s"}</span>
                     </div>
@@ -169,7 +169,7 @@ function Reviews() {
                     ) : reviews.length === 0 ? (
                         <p className="py-8 text-gray-400">No reviews yet. Be the first to share your experience.</p>
                     ) : (
-                        <div className="max-h-[650px] space-y-4 overflow-y-auto pr-2">
+                        <div className="max-h-[650px] space-y-3 overflow-y-auto pr-1 sm:space-y-4 sm:pr-2">
                             {reviews.map(review => (
                                 <article key={review._id} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
                                     <div className="flex flex-wrap items-start justify-between gap-3">

@@ -26,33 +26,33 @@ function HowWorks() {
     return (
         <section
             id="how-it-works"
-            className="min-h-screen bg-black text-white px-8 md:px-20 py-32 scroll-mt-24"
+            className="min-h-[100svh] scroll-mt-20 bg-black px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20"
         >
             <div className="max-w-7xl mx-auto">
 
-                <div className="text-center mb-20">
-                    <p className="text-gray-500 tracking-[5px] text-sm mb-5">
+                <div className="mb-12 text-center sm:mb-20">
+                    <p className="mb-4 text-xs tracking-[0.2em] text-gray-500 sm:mb-5 sm:text-sm sm:tracking-[5px]">
                         04 — YOUR JOURNEY
                     </p>
 
-                    <h1 className="text-4xl md:text-6xl font-black mb-6">
+                    <h1 className="mb-5 text-3xl font-black sm:mb-6 min-[420px]:text-4xl md:text-6xl">
                         HOW IT WORKS.
                     </h1>
 
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="mx-auto max-w-2xl text-base text-gray-400 sm:text-lg">
                         Becoming your future self starts with a single
                         decision. Follow these four steps and start
                         building the future you want.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
                     {steps.map((step) => (
                         <div
                             key={step.number}
-                            className="bg-[#0D0D0D] border border-[#252525] rounded-xl p-8 hover:border-white transition duration-300"
+                            className="rounded-xl border border-[#252525] bg-[#0D0D0D] p-5 transition duration-300 hover:border-white sm:p-8"
                         >
-                            <p className="text-gray-600 text-5xl font-black mb-8">
+                            <p className="mb-5 text-4xl font-black text-gray-600 sm:mb-8 sm:text-5xl">
                                 {step.number}
                             </p>
 
@@ -67,8 +67,8 @@ function HowWorks() {
                     ))}
                 </div>
 
-                <div className="text-center mt-20">
-                    <h2 className="text-3xl md:text-5xl font-black">
+                <div className="mt-14 text-center sm:mt-20">
+                    <h2 className="text-2xl font-black leading-tight sm:text-3xl md:text-5xl">
                         THE JOURNEY STARTS WITH YOU.
                     </h2>
 

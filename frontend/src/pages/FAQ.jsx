@@ -34,22 +34,22 @@ function FAQ() {
     return (
         <section
             id="faq"
-            className="min-h-screen box-border bg-black bg-cover bg-center bg-no-repeat text-white px-6 sm:px-10 lg:px-20 py-24 md:py-28 scroll-mt-24 flex items-center"
+            className="box-border flex min-h-[100svh] scroll-mt-20 items-center bg-black bg-cover bg-center bg-no-repeat px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20"
             style={{ backgroundImage: `url(${FAQBG})` }}
         >
             <div className="w-full max-w-7xl mx-auto grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
                 <div>
-                    <p className="text-gray-500 tracking-[5px] text-sm mb-5">
+                    <p className="mb-4 text-xs tracking-[0.2em] text-gray-500 sm:mb-5 sm:text-sm sm:tracking-[5px]">
                         05 — QUESTIONS & ANSWERS
                     </p>
 
-                    <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+                    <h1 className="mb-5 text-4xl font-black leading-tight min-[420px]:text-5xl sm:mb-6 md:text-7xl">
                         GOT
                         <br />
                         QUESTIONS?
                     </h1>
 
-                    <p className="text-gray-400 text-lg max-w-md leading-relaxed">
+                    <p className="max-w-md text-base leading-relaxed text-gray-400 sm:text-lg">
                         Everything you need to know about Future You.
                         Find answers to common questions and learn how
                         to start building your future.
@@ -69,7 +69,7 @@ function FAQ() {
                                 className="w-full flex items-center justify-between text-left gap-4"
                                 aria-expanded={activeQuestion === index}
                             >
-                                <span className="text-base sm:text-lg font-bold">
+                                <span className="text-left text-sm font-bold sm:text-base md:text-lg">
                                     {item.question}
                                 </span>
 
