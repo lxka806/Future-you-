@@ -11,7 +11,7 @@ const DailyMotivation = require("../models/dailyMotivation.model")
 const getAuthCookieOptions = () => ({
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
-    sameSite: process.env.NODE_ENV === "development" ? "lax" : "none",
+    sameSite: "lax",
     path: "/"
 })
 
@@ -19,11 +19,15 @@ const register = async (req, res) => {
     try {
         const { username, email, password } = req.body
 
-        if (!username || !email || !password) {
+        const normalizedEmail = typeof email === "string"
+            ? email.trim().toLowerCase()
+            : ""
+
+        if (!username || !normalizedEmail || !password) {
             return res.status(400).json({ message: "All fields are required" })
         }
 
-        const usedEmail = await User.findOne({ email })
+        const usedEmail = await User.findOne({ email: normalizedEmail })
 
         if (usedEmail) {
             return res.status(400).json({ message: "Email already in use" })
@@ -33,7 +37,7 @@ const register = async (req, res) => {
 
         const newUser = new User({
             username,
-            email,
+            email: normalizedEmail,
             password: hashedPassword
         })
 
@@ -76,11 +80,15 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body
 
-        if (!email || !password) {
+        const normalizedEmail = typeof email === "string"
+            ? email.trim().toLowerCase()
+            : ""
+
+        if (!normalizedEmail || !password) {
             return res.status(400).json({ message: "All fields are required" })
         }
 
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ email: normalizedEmail })
 
         if (!user) {
             return res.status(401).json({ message: "Invalid email or password" })
