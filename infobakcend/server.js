@@ -9,13 +9,6 @@ dotenv.config()
 const app = express()
 const port = Number(process.env.PORT) || 3001
 
-const allowedOrigins = new Set(
-    (process.env.FRONTEND_ORIGIN || "http://localhost:5173,http://localhost:5174")
-        .split(",")
-        .map(origin => origin.trim())
-        .filter(Boolean)
-)
-
 app.use(cors({
     origin: true,
     credentials: true
