@@ -15,7 +15,7 @@ function NavBar() {
                 <a href="#faq" className="hover:text-gray-300">FAQ</a>
                 <a href="#reviews" className="hover:text-gray-300">Reviews</a>
             </nav>
-            <Button buttonText="Start Your Journey" href="#how-it-works" />
+            <Button buttonText="Start Your Journey" href="https://future-you-web-app.netlify.app/login" />
         </header>
     );
 }

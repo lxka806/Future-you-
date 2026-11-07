@@ -17,11 +17,10 @@ const allowedOrigins = new Set(
 )
 
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.has(origin)) return callback(null, true)
-        return callback(new Error("Origin is not allowed by CORS"))
-    }
+    origin: true,
+    credentials: true
 }))
+
 app.use(express.json({ limit: "10kb" }))
 app.use("/api/reviews", reviewRouter)
 
